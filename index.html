@@ -358,6 +358,298 @@
     </div>
   </section>
 
+  <!-- RESTOCK / LOAD -->
+  <section class="py-24 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: text -->
+        <div>
+          <p class="text-green-600 font-semibold text-sm uppercase tracking-widest mb-3">Restocking</p>
+          <h2 class="text-4xl font-bold text-gray-900 mb-5">Walk in knowing<br/>exactly what to load.</h2>
+          <p class="text-gray-500 leading-relaxed mb-8">Before you leave the warehouse, pull up your machine in VendVault. Every slot shows its current count, what's running low, and what's empty — so you pack exactly what you need. No guessing, no wasted trips.</p>
+          <ul class="space-y-5">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">Slot-by-slot restock logging</p>
+                <p class="text-gray-500 text-sm mt-0.5">Tap each slot as you fill it. VendVault records exactly what went in and updates inventory instantly.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">Timestamped driver history</p>
+                <p class="text-gray-500 text-sm mt-0.5">Every visit is logged — who loaded what, which slots, and when. Accountability built right in.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">Zero double-entry</p>
+                <p class="text-gray-500 text-sm mt-0.5">Sales from Cantaloupe decrement inventory automatically. Your restock log tops them back up. One system, always in sync.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: load screen mockup -->
+        <div>
+          <div class="mockup-shadow rounded-2xl overflow-hidden border border-gray-200 max-w-sm mx-auto">
+            <div class="bg-gray-800 px-4 py-3 flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-red-400/70"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400/70"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400/70"></div>
+              </div>
+              <div class="flex-1 bg-gray-700 rounded-md mx-4 px-3 py-1 text-xs text-gray-400 text-center">app.vendvault.net/load/M-14</div>
+            </div>
+            <div class="bg-gray-50 p-4">
+              <div class="bg-white rounded-xl border border-gray-100 p-3 mb-3">
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <p class="text-sm font-bold text-gray-900">Break Room A</p>
+                    <p class="text-xs text-gray-400">Machine M-14 · Snack</p>
+                  </div>
+                  <span class="text-xs bg-brand-100 text-brand-700 font-semibold px-2 py-0.5 rounded-full">Active run</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="bg-red-50 rounded-lg py-2">
+                    <div class="text-xl font-black text-red-600">3</div>
+                    <div class="text-xs text-red-400 font-medium">empty</div>
+                  </div>
+                  <div class="bg-amber-50 rounded-lg py-2">
+                    <div class="text-xl font-black text-amber-500">7</div>
+                    <div class="text-xs text-amber-400 font-medium">low</div>
+                  </div>
+                  <div class="bg-green-50 rounded-lg py-2">
+                    <div class="text-xl font-black text-green-600">38</div>
+                    <div class="text-xs text-green-400 font-medium">stocked</div>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-red-50 border border-red-200 rounded-xl p-3 flex items-center gap-3">
+                  <div class="w-9 h-9 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-red-600 font-bold text-xs">B5</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold text-gray-900">Twix</p>
+                    <p class="text-xs text-red-500 font-medium">Empty — load 10</p>
+                  </div>
+                  <button class="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Load</button>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-center gap-3">
+                  <div class="w-9 h-9 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-amber-600 font-bold text-xs">A2</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold text-gray-900">Doritos Nacho</p>
+                    <p class="text-xs text-amber-500 font-medium">2 left — load 8 more</p>
+                  </div>
+                  <button class="bg-amber-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Load</button>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3">
+                  <div class="w-9 h-9 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-gray-500 font-bold text-xs">A1</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold text-gray-900">Lay's Classic</p>
+                    <p class="text-xs text-green-500 font-medium">8 / 10 — stocked</p>
+                  </div>
+                  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+              </div>
+              <button class="mt-3 w-full gradient-brand text-white text-sm font-bold py-2.5 rounded-xl shadow-sm">Mark Run Complete</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MACHINE SETUP & MONITORING -->
+  <section class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 font-semibold text-sm uppercase tracking-widest mb-3">Machine Management</p>
+        <h2 class="text-4xl font-bold text-gray-900">Every slot. Every machine.<br/>Always accounted for.</h2>
+        <p class="text-gray-500 mt-3 max-w-xl mx-auto">Set up your planogram once — assign products to slots, set par levels, and watch inventory update in real time as Cantaloupe sales roll in.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: Vending machine mockup -->
+        <div class="flex flex-col items-center">
+          <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-5">Live inventory · Break Room A</p>
+          <!-- Machine outer frame -->
+          <div style="background:linear-gradient(180deg,#2d3142 0%,#1a1c2e 100%);border-radius:20px;padding:16px 14px;box-shadow:0 40px 100px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.12);width:100%;max-width:420px;">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <span style="color:#c7d2fe;font-size:13px;font-weight:800;letter-spacing:0.06em;">VENDVAULT</span>
+                <span style="color:#6b7280;font-size:11px;margin-left:6px;">M-14</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full" style="box-shadow:0 0 8px #4ade80;"></div>
+                <span style="color:#86efac;font-size:11px;font-weight:600;">ONLINE</span>
+              </div>
+            </div>
+            <!-- Glass / slot area -->
+            <div style="background:linear-gradient(180deg,rgba(255,255,255,0.04) 0%,rgba(147,197,253,0.05) 100%);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:10px 8px;margin-bottom:12px;">
+              <!-- Grid: 1 label col + 8 product cols -->
+              <div style="display:grid;grid-template-columns:14px repeat(8,1fr);gap:3px;">
+
+                <!-- Column headers -->
+                <div></div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">1</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">2</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">3</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">4</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">5</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">6</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">7</div>
+                <div style="text-align:center;color:#6b7280;font-size:7px;font-weight:600;padding-bottom:3px;">8</div>
+
+                <!-- ROW A — Chips & Savory -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">A</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Lay's</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A2</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Doritos</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A3</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Cheetos</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Pretzels</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A5</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Popcorn</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A6</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Pringles</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A7</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Fritos</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">A8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">SunChips</span></div>
+
+                <!-- ROW B — Candy Bars -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">B</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Snickers</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B2</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Kit Kat</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B3</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">M&amp;Ms</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Reese's</span></div>
+                <div style="background:#fff1f2;border:1px solid #fca5a5;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B5</span><span style="font-size:7px;font-weight:700;color:#dc2626;text-align:center;line-height:1.2;">Twix</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B6</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Mlky Way</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B7</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">3 Musk.</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">B8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Bttrfgr</span></div>
+
+                <!-- ROW C — Healthy / Granola -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">C</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Nat.Val</span></div>
+                <div style="background:#fff1f2;border:1px solid #fca5a5;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C2</span><span style="font-size:7px;font-weight:700;color:#dc2626;text-align:center;line-height:1.2;">Clif Bar</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C3</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Kind Bar</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Fig Nwt</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C5</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Nutri-G</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C6</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Trl Mix</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C7</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Quaker</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">C8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Spcl K</span></div>
+
+                <!-- ROW D — Crackers -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">D</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Chz-It</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D2</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Goldfish</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D3</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Ritz</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Wht Thns</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D5</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Triscuit</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D6</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Club Cr.</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D7</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Rice Cr.</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">D8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Prtzl Cr</span></div>
+
+                <!-- ROW E — Cookies -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">E</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Oreos</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E2</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Chips A.</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E3</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Nutr Bt</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Fig Bars</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E5</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Lorna D</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E6</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Nilla W.</span></div>
+                <div style="background:#fff1f2;border:1px solid #fca5a5;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E7</span><span style="font-size:7px;font-weight:700;color:#dc2626;text-align:center;line-height:1.2;">Sft Btch</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">E8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Peprdg</span></div>
+
+                <!-- ROW F — Gummies & Candy -->
+                <div style="color:#9ca3af;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;">F</div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F1</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Skittles</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F2</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Starbst</span></div>
+                <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F3</span><span style="font-size:7px;font-weight:700;color:#92400e;text-align:center;line-height:1.2;">Jlly Rch</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F4</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Gmmy Br</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F5</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Sour Pch</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F6</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Welch's</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F7</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Mike&amp;Ike</span></div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:40px;"><span style="font-size:6px;color:#9ca3af;font-weight:600;align-self:flex-start;margin-left:2px;">F8</span><span style="font-size:7px;font-weight:700;color:#15803d;text-align:center;line-height:1.2;">Nerds</span></div>
+
+              </div>
+            </div>
+            <!-- Machine footer: keypad + card reader -->
+            <div style="display:flex;gap:8px;">
+              <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:8px;padding:7px 10px;border:1px solid rgba(255,255,255,0.08);">
+                <span style="color:#6b7280;font-size:8px;font-weight:600;display:block;margin-bottom:2px;letter-spacing:0.05em;">SELECTION</span>
+                <span style="color:#e5e7eb;font-size:13px;font-weight:700;letter-spacing:0.15em;">— — —</span>
+              </div>
+              <div style="flex:1;background:rgba(99,102,241,0.12);border-radius:8px;padding:7px 10px;border:1px solid rgba(99,102,241,0.25);">
+                <span style="color:#818cf8;font-size:8px;font-weight:600;display:block;margin-bottom:2px;letter-spacing:0.05em;">CARD / TAP</span>
+                <span style="color:#c7d2fe;font-size:12px;font-weight:700;">💳 READY</span>
+              </div>
+            </div>
+          </div>
+          <!-- Legend -->
+          <div class="flex items-center gap-6 mt-5 text-xs text-gray-500">
+            <div class="flex items-center gap-1.5"><div style="width:12px;height:12px;border-radius:3px;background:#f0fdf4;border:1px solid #4ade80;"></div> Full</div>
+            <div class="flex items-center gap-1.5"><div style="width:12px;height:12px;border-radius:3px;background:#fffbeb;border:1px solid #f59e0b;"></div> Low</div>
+            <div class="flex items-center gap-1.5"><div style="width:12px;height:12px;border-radius:3px;background:#fff1f2;border:1px solid #f87171;"></div> Empty</div>
+          </div>
+        </div>
+
+        <!-- Right: feature bullets -->
+        <div class="space-y-8 lg:pt-4">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#6366f1" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Visual planogram builder</h3>
+              <p class="text-gray-500 leading-relaxed">Set up your machine's layout — rows, columns, products per slot, and par levels. VendVault maps every Cantaloupe sale back to the exact slot automatically.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Low-stock alerts before it's a problem</h3>
+              <p class="text-gray-500 leading-relaxed">Set a par level for each slot. The moment inventory drops below it, it's flagged in your dashboard — and optionally fires an SMS or email to your driver.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Slot-level sales performance</h3>
+              <p class="text-gray-500 leading-relaxed">See which slots sell fast and which collect dust. Move your best-sellers to prime positions and stop wasting par space on slow movers.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Any machine, any layout</h3>
+              <p class="text-gray-500 leading-relaxed">Snack machines, drink machines, combo units — configure any row/column layout. Each machine gets its own planogram, product list, and inventory history.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section id="how-it-works" class="py-24 px-6 bg-gray-50">
     <div class="max-w-4xl mx-auto">
