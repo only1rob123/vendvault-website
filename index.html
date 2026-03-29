@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VendVault — Vending Management That Actually Makes Sense</title>
+  <meta name="description" content="VendVault connects to your Cantaloupe Seed data and gives you a clean, fast dashboard to manage machines, track inventory, and see real profit — without the frustration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe',
+              300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1',
+              600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-hero { background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%); }
+    .gradient-brand { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .card-shadow { box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 20px 60px rgba(0,0,0,0.3); }
+    .mockup-shadow { box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08); }
+
+    /* Dashboard mockup styles */
+    .mock-card { background: white; border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .mock-kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 2px; }
+    .mock-kpi-label { font-size: 11px; font-weight: 500; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+    .mock-sidebar { background: #111827; width: 200px; flex-shrink: 0; padding: 16px 12px; }
+    .mock-sidebar-item { padding: 8px 12px; border-radius: 8px; color: #9ca3af; font-size: 12px; font-weight: 500; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
+    .mock-sidebar-item.active { background: rgba(99,102,241,0.15); color: #818cf8; }
+    .mock-topbar { background: white; border-bottom: 1px solid #f3f4f6; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .mock-chart-bar { background: linear-gradient(to top, #6366f1, #818cf8); border-radius: 4px 4px 0 0; }
+    .mock-badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 600; }
+  </style>
+</head>
+<body class="font-sans antialiased bg-white text-gray-900">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center shadow-sm">
+          <span class="text-white font-bold text-sm">VV</span>
+        </div>
+        <span class="font-bold text-gray-900 text-lg">VendVault</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Features</a>
+        <a href="#how-it-works" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">How it works</a>
+        <a href="#pricing" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Pricing</a>
+        <a href="#faq" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">FAQ</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.vendvault.net/login" class="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium">Sign in</a>
+        <a href="https://app.vendvault.net/register" class="text-sm font-semibold text-white px-4 py-2 rounded-lg gradient-brand hover:opacity-90 transition-opacity shadow-sm">Start free trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="gradient-hero pt-32 pb-20 px-6 overflow-hidden">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-1.5 h-1.5 bg-brand-400 rounded-full"></span>
+          <span class="text-brand-300 text-xs font-semibold tracking-wide uppercase">Works with Cantaloupe Seed</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+          The dashboard<br/>
+          <span class="text-brand-400">Cantaloupe should<br/>have built</span>
+        </h1>
+        <p class="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-10">
+          VendVault connects to your Cantaloupe Seed data and gives you a clean, fast dashboard to manage machines, track inventory, and see real profit — without the frustration.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://app.vendvault.net/register" class="inline-flex items-center justify-center gap-2 gradient-brand text-white font-semibold px-8 py-4 rounded-xl hover:opacity-90 transition-opacity shadow-lg text-base">
+            Start your free 14-day trial
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href="#how-it-works" class="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/15 transition-colors border border-white/10 text-base">
+            See how it works
+          </a>
+        </div>
+        <p class="text-gray-500 text-sm mt-4">No credit card required · Cancel anytime</p>
+      </div>
+
+      <!-- Dashboard Mockup -->
+      <div class="mockup-shadow rounded-2xl overflow-hidden border border-white/10 max-w-5xl mx-auto">
+        <!-- Browser bar -->
+        <div class="bg-gray-800 px-4 py-3 flex items-center gap-2">
+          <div class="flex gap-1.5">
+            <div class="w-3 h-3 rounded-full bg-red-400/70"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-400/70"></div>
+            <div class="w-3 h-3 rounded-full bg-green-400/70"></div>
+          </div>
+          <div class="flex-1 bg-gray-700 rounded-md mx-4 px-3 py-1 text-xs text-gray-400 text-center">app.vendvault.net/dashboard</div>
+        </div>
+        <!-- App UI -->
+        <div class="flex" style="background:#f9fafb; min-height:420px;">
+          <!-- Sidebar -->
+          <div class="mock-sidebar hidden md:block">
+            <div class="flex items-center gap-2 mb-6 px-2">
+              <div class="w-6 h-6 bg-brand-500 rounded-md flex items-center justify-center"><span class="text-white font-bold text-xs">VV</span></div>
+              <span class="text-white font-semibold text-sm">VendVault</span>
+            </div>
+            <div class="mock-sidebar-item active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              Dashboard
+            </div>
+            <div class="mock-sidebar-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Machines
+            </div>
+            <div class="mock-sidebar-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+              Inventory
+            </div>
+            <div class="mock-sidebar-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              Finance
+            </div>
+            <div class="mock-sidebar-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              Reports
+            </div>
+          </div>
+          <!-- Main content -->
+          <div class="flex-1 p-5 overflow-hidden">
+            <div class="mb-4">
+              <h2 class="text-base font-bold text-gray-900">Dashboard</h2>
+              <p class="text-xs text-gray-400">Overview of all vending operations</p>
+            </div>
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-5">
+              <div class="mock-card">
+                <div class="mock-kpi-label">Today</div>
+                <div class="mock-kpi-value text-brand-600">$284</div>
+                <div style="font-size:10px;color:#9ca3af;margin-top:2px;">42 sales</div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-kpi-label">Month</div>
+                <div class="mock-kpi-value">$6,820</div>
+                <div style="font-size:10px;color:#22c55e;margin-top:2px;">↑ 12.4%</div>
+              </div>
+              <div class="mock-card hidden md:block">
+                <div class="mock-kpi-label">Machines</div>
+                <div class="mock-kpi-value text-purple-600">8</div>
+                <div style="font-size:10px;color:#9ca3af;margin-top:2px;">active</div>
+              </div>
+              <div class="mock-card hidden md:block">
+                <div class="mock-kpi-label">Products</div>
+                <div class="mock-kpi-value">47</div>
+                <div style="font-size:10px;color:#9ca3af;margin-top:2px;">active</div>
+              </div>
+              <div class="mock-card hidden md:block">
+                <div class="mock-kpi-label">Low Stock</div>
+                <div class="mock-kpi-value text-amber-500">3</div>
+                <div style="font-size:10px;color:#9ca3af;margin-top:2px;">slots</div>
+              </div>
+              <div class="mock-card hidden md:block">
+                <div class="mock-kpi-label">Empty</div>
+                <div class="mock-kpi-value text-red-500">1</div>
+                <div style="font-size:10px;color:#9ca3af;margin-top:2px;">slots</div>
+              </div>
+            </div>
+            <!-- Chart area -->
+            <div class="mock-card mb-4" style="padding:14px 16px;">
+              <div style="font-size:12px;font-weight:600;color:#111827;margin-bottom:12px;">Daily Revenue — Last 30 Days</div>
+              <div style="display:flex;align-items:flex-end;gap:4px;height:80px;">
+                <div class="mock-chart-bar flex-1" style="height:45%"></div>
+                <div class="mock-chart-bar flex-1" style="height:60%"></div>
+                <div class="mock-chart-bar flex-1" style="height:35%"></div>
+                <div class="mock-chart-bar flex-1" style="height:75%"></div>
+                <div class="mock-chart-bar flex-1" style="height:55%"></div>
+                <div class="mock-chart-bar flex-1" style="height:80%"></div>
+                <div class="mock-chart-bar flex-1" style="height:65%"></div>
+                <div class="mock-chart-bar flex-1" style="height:90%"></div>
+                <div class="mock-chart-bar flex-1" style="height:70%"></div>
+                <div class="mock-chart-bar flex-1" style="height:85%"></div>
+                <div class="mock-chart-bar flex-1" style="height:60%"></div>
+                <div class="mock-chart-bar flex-1" style="height:95%"></div>
+                <div class="mock-chart-bar flex-1" style="height:75%"></div>
+                <div class="mock-chart-bar flex-1" style="height:88%"></div>
+                <div class="mock-chart-bar flex-1 opacity-40" style="height:100%"></div>
+              </div>
+            </div>
+            <!-- Top products table -->
+            <div class="mock-card">
+              <div style="font-size:12px;font-weight:600;color:#111827;margin-bottom:10px;">Top Products</div>
+              <div style="font-size:11px;">
+                <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;color:#6b7280;border-bottom:1px solid #f3f4f6;padding-bottom:6px;margin-bottom:6px;font-weight:500;">
+                  <span>Product</span><span>Units</span><span>Revenue</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-bottom:4px;">
+                  <span style="font-weight:500;color:#111827;">Coca-Cola 20oz</span><span style="color:#6b7280;">186</span><span style="color:#6b7280;">$325.50</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-bottom:4px;">
+                  <span style="font-weight:500;color:#111827;">Doritos Nacho</span><span style="color:#6b7280;">142</span><span style="color:#6b7280;">$213.00</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;">
+                  <span style="font-weight:500;color:#111827;">Red Bull 8.4oz</span><span style="color:#6b7280;">98</span><span style="color:#6b7280;">$293.02</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN POINT BANNER -->
+  <section class="bg-brand-600 py-12 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-brand-100 text-sm font-semibold uppercase tracking-widest mb-3">Sound familiar?</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        "I have all this data in Cantaloupe.<br class="hidden md:block"/> Why is it so hard to actually use it?"
+      </h2>
+      <p class="text-brand-200 text-base max-w-2xl mx-auto">
+        Cantaloupe Seed is powerful telemetry software — but it wasn't built for operators who need to make fast decisions on the road. VendVault takes your existing Seed data and presents it the way you actually think about your business.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 font-semibold text-sm uppercase tracking-widest mb-3">Features</p>
+        <h2 class="text-4xl font-bold text-gray-900">Everything you need.<br/>Nothing you don't.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Feature 1 — Auto Import -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#6366f1" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Auto-import from Cantaloupe</h3>
+          <p class="text-gray-500 leading-relaxed mb-5">Set up a scheduled report in Seed once. VendVault receives it every morning and updates your dashboard automatically — no manual exports, no CSV uploads.</p>
+          <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span class="text-xs font-medium text-gray-600">Email received from Cantaloupe Seed</span>
+              <span class="ml-auto text-xs text-gray-400">3:04 AM</span>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span class="text-xs font-medium text-gray-600">Parsed 1,284 transaction rows</span>
+              <span class="ml-auto text-xs text-gray-400">3:04 AM</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span class="text-xs font-medium text-gray-600">Dashboard updated. 0 errors.</span>
+              <span class="ml-auto text-xs text-gray-400">3:04 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 — Inventory -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Inventory that tracks itself</h3>
+          <p class="text-gray-500 leading-relaxed mb-5">Every sale automatically decrements slot inventory. Know exactly what's low, what's empty, and what to load before you leave the warehouse.</p>
+          <div class="bg-white rounded-xl p-4 border border-gray-100 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-gray-700">A1 — Coca-Cola 20oz</span>
+              <div class="flex items-center gap-2">
+                <div class="w-20 bg-gray-100 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width:80%"></div></div>
+                <span class="text-xs text-gray-500">8/10</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-gray-700">B3 — Doritos Nacho</span>
+              <div class="flex items-center gap-2">
+                <div class="w-20 bg-gray-100 rounded-full h-1.5"><div class="bg-amber-400 h-1.5 rounded-full" style="width:20%"></div></div>
+                <span class="text-xs font-medium text-amber-600">2/10</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-gray-700">C2 — Red Bull 8.4oz</span>
+              <div class="flex items-center gap-2">
+                <div class="w-20 bg-gray-100 rounded-full h-1.5"><div class="bg-red-500 h-1.5 rounded-full" style="width:0%"></div></div>
+                <span class="text-xs font-bold text-red-600">Empty</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-gray-700">D1 — Gatorade Blue</span>
+              <div class="flex items-center gap-2">
+                <div class="w-20 bg-gray-100 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width:60%"></div></div>
+                <span class="text-xs text-gray-500">6/10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 — Finance -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Real P&amp;L by machine</h3>
+          <p class="text-gray-500 leading-relaxed mb-5">See revenue, COGS, commissions, and net profit for each machine — by month. Finally know which machines are pulling their weight and which aren't.</p>
+          <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div>
+                <div class="text-xs text-gray-400 mb-1">Revenue</div>
+                <div class="text-base font-bold text-gray-900">$2,840</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400 mb-1">Net Profit</div>
+                <div class="text-base font-bold text-green-600">$892</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400 mb-1">Margin</div>
+                <div class="text-base font-bold text-brand-600">31.4%</div>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-gray-50 text-xs text-gray-400 text-center">Break Room A · March 2026</div>
+          </div>
+        </div>
+
+        <!-- Feature 4 — Route planning -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-10l6-3m0 13l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 10m0 10V10"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Smarter route planning</h3>
+          <p class="text-gray-500 leading-relaxed mb-5">Build delivery runs, track warehouse stock, and log restocks in real time. Know exactly what you loaded into every machine on every visit.</p>
+          <div class="bg-white rounded-xl p-4 border border-gray-100 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium text-gray-700">📍 123 Main St</span>
+              <span class="text-amber-600 font-semibold">2 low · 1 empty</span>
+            </div>
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium text-gray-700">📍 456 Oak Ave</span>
+              <span class="text-green-600 font-semibold">All stocked</span>
+            </div>
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium text-gray-700">📍 789 Pine Rd</span>
+              <span class="text-amber-600 font-semibold">3 low</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 font-semibold text-sm uppercase tracking-widest mb-3">Setup in minutes</p>
+        <h2 class="text-4xl font-bold text-gray-900">Three steps.<br/>Then it runs itself.</h2>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl p-8 border border-gray-100 flex gap-6 items-start">
+          <div class="w-12 h-12 gradient-brand rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+            <span class="text-white font-black text-lg">1</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Create your VendVault account</h3>
+            <p class="text-gray-500">Sign up in 30 seconds. You'll instantly get your unique import email address — something like <code class="text-brand-600 bg-brand-50 px-1.5 py-0.5 rounded text-sm">a3f9b2c1@import.vendvault.net</code></p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 border border-gray-100 flex gap-6 items-start">
+          <div class="w-12 h-12 gradient-brand rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+            <span class="text-white font-black text-lg">2</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Set up one scheduled report in Cantaloupe Seed</h3>
+            <p class="text-gray-500">In Seed: Reports → Report Scheduler → New Report. Choose "Transaction Line Item Export", set it to email your import address daily at 3 AM. Takes about 5 minutes, you never touch it again.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 border border-gray-100 flex gap-6 items-start">
+          <div class="w-12 h-12 gradient-brand rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+            <span class="text-white font-black text-lg">3</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Open VendVault every morning. Done.</h3>
+            <p class="text-gray-500">By the time you have your coffee, your dashboard is updated with yesterday's sales, inventory levels are adjusted, and your route priorities are clear. No manual work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 font-semibold text-sm uppercase tracking-widest mb-3">Pricing</p>
+        <h2 class="text-4xl font-bold text-gray-900">Simple, honest pricing.</h2>
+        <p class="text-gray-500 mt-3">Pay for what you use. Scale as you grow.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <!-- Trial -->
+        <div class="rounded-2xl p-8 border-2 border-gray-200">
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Free Trial</h3>
+            <p class="text-4xl font-black text-gray-900 mt-2">$0 <span class="text-lg font-normal text-gray-400">/ 14 days</span></p>
+            <p class="text-gray-500 text-sm mt-2">No credit card required</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>All features included</li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Unlimited machines</li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Automatic Cantaloupe import</li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>No credit card required</li>
+          </ul>
+          <a href="https://app.vendvault.net/register" class="block text-center bg-gray-100 text-gray-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-200 transition-colors">Start free trial</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="rounded-2xl p-8 border-2 border-brand-500 relative shadow-xl shadow-brand-500/10">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="gradient-brand text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">Most popular</span>
+          </div>
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Pro</h3>
+            <p class="text-4xl font-black text-gray-900 mt-2">$9 <span class="text-lg font-normal text-gray-400">/ month</span></p>
+            <p class="text-gray-500 text-sm mt-2">Includes your first 4 machines</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Free Trial</li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>4 machines included</li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><span>+$2 per additional machine</span></li>
+            <li class="flex items-center gap-3 text-sm text-gray-600"><span class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Cancel anytime</li>
+          </ul>
+          <a href="https://app.vendvault.net/register" class="block text-center gradient-brand text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity shadow-md">Get started</a>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <p class="text-gray-400 text-sm">10 machines = <strong class="text-gray-600">$21/month</strong> &nbsp;·&nbsp; 20 machines = <strong class="text-gray-600">$41/month</strong> &nbsp;·&nbsp; 50 machines = <strong class="text-gray-600">$101/month</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 font-semibold text-sm uppercase tracking-widest mb-3">FAQ</p>
+        <h2 class="text-4xl font-bold text-gray-900">Questions? Answered.</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl border border-gray-100 group" open>
+          <summary class="p-6 font-semibold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+            Do I have to stop using Cantaloupe?
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="flex-shrink-0 transition-transform group-open:rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="px-6 pb-6 text-gray-500 text-sm leading-relaxed">No. VendVault works alongside Cantaloupe, not instead of it. Cantaloupe still handles your telemetry and cashless payments. VendVault just makes the reporting and management side actually usable.</p>
+        </details>
+
+        <details class="bg-white rounded-xl border border-gray-100 group">
+          <summary class="p-6 font-semibold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+            How does the Cantaloupe import work exactly?
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="flex-shrink-0 transition-transform group-open:rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="px-6 pb-6 text-gray-500 text-sm leading-relaxed">You set up a scheduled "Transaction Line Item Export" report in Cantaloupe Seed's Report Scheduler. You point it at your unique VendVault import email address. Every morning Seed emails the report, VendVault picks it up automatically and updates your dashboard. It's a one-time 5-minute setup.</p>
+        </details>
+
+        <details class="bg-white rounded-xl border border-gray-100 group">
+          <summary class="p-6 font-semibold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+            What counts as a "machine"?
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="flex-shrink-0 transition-transform group-open:rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="px-6 pb-6 text-gray-500 text-sm leading-relaxed">Any vending machine you add to VendVault counts. The first 4 are included in the base price. Additional machines are $2/month each. If you have seasonal machines you can deactivate them and not be billed.</p>
+        </details>
+
+        <details class="bg-white rounded-xl border border-gray-100 group">
+          <summary class="p-6 font-semibold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+            Is my sales data secure?
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="flex-shrink-0 transition-transform group-open:rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="px-6 pb-6 text-gray-500 text-sm leading-relaxed">Yes. Your data is stored in an isolated database partition — no other company can see your data. Your import email address is a unique private token. All connections use TLS encryption. We never sell or share your data.</p>
+        </details>
+
+        <details class="bg-white rounded-xl border border-gray-100 group">
+          <summary class="p-6 font-semibold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+            Can I cancel anytime?
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="flex-shrink-0 transition-transform group-open:rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="px-6 pb-6 text-gray-500 text-sm leading-relaxed">Yes, anytime. No contracts, no cancellation fees. If you cancel, you keep access until the end of your billing period. We can also export all your data if you want it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="gradient-hero py-24 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-4xl font-black text-white mb-4">Ready to stop fighting your data?</h2>
+      <p class="text-gray-300 text-lg mb-8">Join operators who've replaced spreadsheets and Cantaloupe frustration with a dashboard that actually makes sense.</p>
+      <a href="https://app.vendvault.net/register" class="inline-flex items-center gap-2 gradient-brand text-white font-semibold px-10 py-4 rounded-xl hover:opacity-90 transition-opacity shadow-lg text-base">
+        Start your free 14-day trial
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </a>
+      <p class="text-gray-500 text-sm mt-4">No credit card required · 14 days free · Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">VV</span>
+            </div>
+            <span class="font-bold text-white text-lg">VendVault</span>
+          </div>
+          <p class="text-gray-400 text-sm max-w-xs">Vending management software for Cantaloupe operators who want clarity, not complexity.</p>
+        </div>
+        <div class="flex gap-12">
+          <div>
+            <p class="text-gray-300 font-semibold text-sm mb-3">Product</p>
+            <ul class="space-y-2">
+              <li><a href="#features" class="text-gray-400 text-sm hover:text-white transition-colors">Features</a></li>
+              <li><a href="#pricing" class="text-gray-400 text-sm hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#faq" class="text-gray-400 text-sm hover:text-white transition-colors">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-gray-300 font-semibold text-sm mb-3">Account</p>
+            <ul class="space-y-2">
+              <li><a href="https://app.vendvault.net/register" class="text-gray-400 text-sm hover:text-white transition-colors">Sign up free</a></li>
+              <li><a href="https://app.vendvault.net/login" class="text-gray-400 text-sm hover:text-white transition-colors">Sign in</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">© 2026 VendVault. All rights reserved.</p>
+        <p class="text-gray-600 text-xs">Not affiliated with Cantaloupe, Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
